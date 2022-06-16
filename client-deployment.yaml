@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-hello
+  template:
+    metadata:
+      labels:
+        app: nginx-hello
+    spec:
+      containers:
+        - name: client
+          image: catherinium/nginx-hello:v1
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: 2Gi  
+            requests:
+              memory: 1Gi 
+      
